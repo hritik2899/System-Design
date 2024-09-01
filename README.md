@@ -2,8 +2,6 @@
 
 Hey, welcome to the course. I hope this course provides a great learning experience.
 
-_This course is also available on my [website](https://karanpratapsingh.com/courses/system-design) and as an ebook on [leanpub](https://leanpub.com/systemdesign). Please leave a ⭐ as motivation if this was helpful!_
-
 # Table of contents
 
 - **Getting Started**
@@ -905,6 +903,9 @@ There are different RAID levels, however, and not all have the goal of providing
 - **RAID 0**: Also known as striping, data is split evenly across all the drives in the array.
 - **RAID 1**: Also known as mirroring, at least two drives contains the exact copy of a set of data. If a drive fails, others will still work.
 - **RAID 5**: Striping with parity. Requires the use of at least 3 drives, striping the data across multiple drives like RAID 0, but also has a parity distributed across the drives.
+-             In addition to data blocks, RAID 5 stores parity information, which is used for error checking and data recovery.
+              The parity data is not stored on a single disk but is distributed across all the drives in the array.
+              Parity allows RAID 5 to recover data in case one of the disks fails. If a disk fails, the data can be reconstructed using the parity information and the data on the remaining disks.
 - **RAID 6**: Striping with double parity. RAID 6 is like RAID 5, but the parity data are written to two drives.
 - **RAID 10**: Combines striping plus mirroring from RAID 0 and RAID 1. It provides security by mirroring all data on secondary drives while using striping across each set of drives to speed up data transfers.
 
