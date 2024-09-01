@@ -1409,32 +1409,112 @@ Normalization is the process of organizing data in a database. This includes cre
 
 The goal of normalization is to eliminate redundant data and ensure data is consistent. A fully normalized database allows its structure to be extended to accommodate new types of data without changing the existing structure too much. As a result, applications interacting with the database are minimally affected.
 
-### Normal forms
+# Database Normalization
 
-Normal forms are a series of guidelines to ensure that the database is normalized. Let's discuss some essential normal forms:
+Normalization is a process of organizing data in a database to reduce redundancy and improve data integrity. It involves applying a series of rules known as normal forms. Below are the essential normal forms:
 
-**1NF**
+## 1NF (First Normal Form)
 
-For a table to be in the first normal form (1NF), it should follow the following rules:
+For a table to be in the First Normal Form (1NF), it must satisfy the following rules:
 
-- Repeating groups are not permitted.
-- Identify each set of related data with a primary key.
-- Set of related data should have a separate table.
-- Mixing data types in the same column is not permitted.
+- **Eliminate Repeating Groups:** Each cell of the table should contain a single value, not a set of values.
+- **Primary Key:** Identify each set of related data with a primary key.
+- **Separate Related Data:** Sets of related data should have separate tables.
+- **Consistent Data Types:** Mixing data types in the same column is not permitted.
 
-**2NF**
+**Example:**
 
-For a table to be in the second normal form (2NF), it should follow the following rules:
+| StudentID | Name  | Courses          |
+|-----------|-------|------------------|
+| 1         | Alice | Math, Science    |
+| 2         | Bob   | English, History |
 
-- Satisfies the first normal form (1NF).
-- Should not have any partial dependency.
+**1NF Solution:**
 
-**3NF**
+| StudentID | Name  | Course   |
+|-----------|-------|----------|
+| 1         | Alice | Math     |
+| 1         | Alice | Science  |
+| 2         | Bob   | English  |
+| 2         | Bob   | History  |
 
-For a table to be in the third normal form (3NF), it should follow the following rules:
+## 2NF (Second Normal Form)
 
-- Satisfies the second normal form (2NF).
-- Transitive functional dependencies are not permitted.
+For a table to be in the Second Normal Form (2NF), it must satisfy the following rules:
+
+- **Satisfy 1NF:** The table must first be in 1NF.
+- **Remove Partial Dependencies:** The table should not have any partial dependency; every non-key attribute must depend on the entire primary key.
+
+**Example:**
+
+| EnrollmentID | StudentID | CourseID | StudentName | CourseName |
+|--------------|-----------|----------|-------------|------------|
+| 1            | 1         | 101      | Alice       | Math       |
+| 2            | 1         | 102      | Alice       | Science    |
+| 3            | 2         | 103      | Bob         | English    |
+
+**2NF Solution:**
+
+### Students Table
+
+| StudentID | StudentName |
+|-----------|-------------|
+| 1         | Alice       |
+| 2         | Bob         |
+
+### Courses Table
+
+| CourseID | CourseName |
+|----------|------------|
+| 101      | Math       |
+| 102      | Science    |
+| 103      | English    |
+
+### Enrollment Table
+
+| EnrollmentID | StudentID | CourseID |
+|--------------|-----------|----------|
+| 1            | 1         | 101      |
+| 2            | 1         | 102      |
+| 3            | 2         | 103      |
+
+## 3NF (Third Normal Form)
+
+For a table to be in the Third Normal Form (3NF), it must satisfy the following rules:
+
+- **Satisfy 2NF:** The table must first be in 2NF.
+- **Remove Transitive Dependencies:** The table should not have transitive functional dependencies, meaning non-key attributes must depend only on the primary key.
+
+**Example:**
+
+| EnrollmentID | StudentID | CourseID | Instructor   | InstructorDept |
+|--------------|-----------|----------|--------------|----------------|
+| 1            | 1         | 101      | Prof. Smith  | Math Dept      |
+| 2            | 1         | 102      | Dr. Johnson  | Science Dept   |
+| 3            | 2         | 103      | Prof. Brown  | English Dept   |
+
+**3NF Solution:**
+
+### Instructors Table
+
+| Instructor   | InstructorDept |
+|--------------|----------------|
+| Prof. Smith  | Math Dept      |
+| Dr. Johnson  | Science Dept   |
+| Prof. Brown  | English Dept   |
+
+### Enrollment Table
+
+| EnrollmentID | StudentID | CourseID | Instructor   |
+|--------------|-----------|----------|--------------|
+| 1            | 1         | 101      | Prof. Smith  |
+| 2            | 1         | 102      | Dr. Johnson  |
+| 3            | 2         | 103      | Prof. Brown  |
+
+---
+
+Each step of normalization helps to create a more efficient and logical database structure, reducing redundancy and improving data integrity.
+
 
 **BCNF**
 
