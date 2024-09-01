@@ -1335,7 +1335,7 @@ Dense indexes require more maintenance than sparse indexes at write-time. Since 
 
 ## Sparse Index
 
-In a sparse index, index records are created only for some of the records.
+In a sparse index, index records are created only for some of the records.A sparse index, on the other hand, only contains index entries for some of the rows in the table. The entries are usually for the first row in a block or a page of data, rather than every single row. Slower Data Retrieval: Finding a specific row can be slower because a search may involve both binary search on the index and a linear search within the block or page to find the exact row.
 
 ![sparse-index](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/indexes/sparse-index.png)
 
