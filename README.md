@@ -1585,21 +1585,18 @@ The term ACID stands for Atomicity, Consistency, Isolation, and Durability. ACID
 
 In order to maintain consistency before and after a transaction relational databases follow ACID properties. Let us understand these terms:
 
-### Atomic
+## ACID Properties
 
-All operations in a transaction succeed or every operation is rolled back.
+ACID properties are a set of principles that ensure reliable processing of database transactions. Each property guarantees different aspects of transaction handling:
 
-### Consistent
+- **Atomic**: All operations within a transaction are completed successfully, or none of them are. If any part of the transaction fails, all changes made during the transaction are rolled back, leaving the database in its original state.
 
-On the completion of a transaction, the database is structurally sound.
+- **Consistent**: Upon the successful completion of a transaction, the database transitions from one valid state to another. The integrity of the database is maintained according to the defined rules, such as constraints, cascades, and triggers.
 
-### Isolated
+- **Isolated**: Transactions are executed independently and in isolation from one another. Even if multiple transactions are executed concurrently, they do not interfere with each other, and the final result is as if each transaction was processed sequentially.
 
-Transactions do not contend with one another. Contentious access to data is moderated by the database so that transactions appear to run sequentially.
+- **Durable**: Once a transaction has been committed, it remains permanent. Even in the event of a system failure, the changes made by the transaction are preserved, typically through the use of logs or backups.
 
-### Durable
-
-Once the transaction has been completed and the writes and updates have been written to the disk, it will remain in the system even if a system failure occurs.
 
 ## BASE
 
