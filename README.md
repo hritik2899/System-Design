@@ -767,7 +767,14 @@ Here are some advantages of using a reverse proxy:
 
 - Improved security
 - Caching
-- SSL encryption
+- SSL encryption-
+  SSL (Secure Sockets Layer) encryption is a standard security technology used to establish an encrypted link between a web server and a client (typically a web 
+  browser). This encrypted link ensures that all data passed between the web server and browser remains private and integral.
+  SSL Handshake: When a browser connects to a server, the SSL handshake process initiates. This process involves:
+
+  Server Authentication: The server sends its SSL certificate to the client, and the client verifies its validity.
+  Session Key Creation: Both the client and server create a session key, a temporary encryption key used for that session.
+  Encrypted Communication: All data sent between the client and server is encrypted using this session key.
 - Load balancing
 - Scalability and flexibility
 
